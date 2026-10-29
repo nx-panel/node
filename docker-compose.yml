@@ -1,4 +1,4 @@
-# Nexora Node — a single node (the data plane). It is driven by the panel over
+# NX Node — a single node (the data plane). It is driven by the panel over
 # mutual TLS and has no database of its own. It keeps its certificates in
 # ./certs and, in ./cache, only what it can fetch again (rule sets the panel
 # pushed, masque's WARP profile) — ./cache is safe to delete at any time.
@@ -10,18 +10,18 @@
 # certificate on first boot, and the panel pins it on first connection.
 services:
   node:
-    image: ghcr.io/nexora-vpn/node:latest
+    image: ghcr.io/nx-panel/node:latest
     restart: unless-stopped
-    container_name: nexora-node
+    container_name: nx-node
     environment:
       # The IPv6 wildcard, which on a dual-stack host accepts IPv4 too. 0.0.0.0
       # would leave the node unreachable from a panel that only has IPv6; a host
       # with IPv6 switched off cannot bind it, and the node falls back to
       # 0.0.0.0 by itself there.
-      NEXORA_NODE_LISTEN: "[::]:62050"
-      NEXORA_NODE_CERT: /app/certs/ssl_cert.pem
-      NEXORA_NODE_KEY: /app/certs/ssl_key.pem
-      NEXORA_NODE_CLIENT_CA: /app/certs/panel_ca.pem
+      NX_NODE_LISTEN: "[::]:62050"
+      NX_NODE_CERT: /app/certs/ssl_cert.pem
+      NX_NODE_KEY: /app/certs/ssl_key.pem
+      NX_NODE_CLIENT_CA: /app/certs/panel_ca.pem
     volumes:
       - ./certs:/app/certs
       - ./cache:/app/cache

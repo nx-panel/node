@@ -1,14 +1,14 @@
 <div align="center">
-  <img src="https://avatars.githubusercontent.com/u/304456640?s=200&v=4" width="96" alt="Nexora">
-  <h1>Nexora Node</h1>
+  <img src="https://avatars.githubusercontent.com/u/304456640?s=200&v=4" width="96" alt="NX">
+  <h1>NX Node</h1>
   <p><strong>The data plane.</strong> Releases, container images and documentation.</p>
 </div>
 
 ---
 
-Nexora is a proxy management platform made of a **panel**
-([`nexora-vpn/panel`](https://github.com/nexora-vpn/panel)) and any number of
-**nodes** (this repository). A node is a stateless agent running the Nexora proxy
+NX is a proxy management platform made of a **panel**
+([`nx-panel/panel`](https://github.com/nx-panel/panel)) and any number of
+**nodes** (this repository). A node is a stateless agent running the NX proxy
 engine: it has no database and no configuration of its own worth backing up. The
 panel pushes everything to it over HTTPS with mutual TLS, and takes it back on a
 full resync whenever anything looks out of step.
@@ -32,15 +32,15 @@ service and starts it. The panel pins the node's certificate on first connection
 and refuses anything else afterwards.
 
 The binaries the panel serves are the ones this repository publishes — the panel
-installer stages them under `/var/opt/nexora/bin/` at install time.
+installer stages them under `/var/opt/nx-node/bin/` at install time.
 
 For an air-gapped server, a non-systemd host, or an architecture your panel has
 no staged binary for, see the manual install:
 
-- [English](https://docs.nexora-panel.org/start/add-node)
-- [فارسی](https://docs.nexora-panel.org/fa/start/add-node)
-- [Русский](https://docs.nexora-panel.org/ru/start/add-node)
-- [中文](https://docs.nexora-panel.org/zh/start/add-node)
+- [English](https://docs.nx-panel.org/start/add-node)
+- [فارسی](https://docs.nx-panel.org/fa/start/add-node)
+- [Русский](https://docs.nx-panel.org/ru/start/add-node)
+- [中文](https://docs.nx-panel.org/zh/start/add-node)
 
 ## Firewall
 
@@ -70,26 +70,26 @@ up in every subscription link and every client config, so co-locating publishes
 your panel's address to everyone you hand a config to; and a node saturating the
 box takes the panel, and with it every other node's subscriptions, down too.
 Install it with `--listen 127.0.0.1:62050` and add it in the panel as
-`127.0.0.1` if you do it anyway — the [install guide](https://docs.nexora-panel.org/start/same-server)
+`127.0.0.1` if you do it anyway — the [install guide](https://docs.nx-panel.org/start/same-server)
 has the full caveats, including the uninstall command that would delete the
 panel's database.
 
 ## Docker
 
 ```bash
-git clone https://github.com/nexora-vpn/node
+git clone https://github.com/nx-panel/node
 cd node
 mkdir -p certs && cp /path/to/panel_ca.pem certs/
 docker compose up -d
 ```
 
-Images: `ghcr.io/nexora-vpn/node` (`linux/amd64`, `linux/arm64`), published with
+Images: `ghcr.io/nx-panel/node` (`linux/amd64`, `linux/arm64`), published with
 every tagged release.
 
 ## Releases
 
-`nexora-node-linux-{amd64,arm64,armv5,armv6,armv7,386,s390x,riscv64}.tar.gz` —
-each containing the `nexora-node` binary and the systemd unit.
+`nx-node-linux-{amd64,arm64,armv5,armv6,armv7,386,s390x,riscv64}.tar.gz` —
+each containing the `nx-node` binary and the systemd unit.
 
 The NaïveProxy outbound is the only protocol that is not pure Go; it links
 Chromium's cronet, which is bundled statically for `amd64`, `arm64`, `armv7` and
@@ -101,13 +101,13 @@ same or newer minor version, so a fleet can be upgraded node by node.
 
 ## Support
 
-- **Bugs and feature requests** — [open an issue here](https://github.com/nexora-vpn/node/issues).
-  Panel issues belong in [`nexora-vpn/panel`](https://github.com/nexora-vpn/panel/issues).
+- **Bugs and feature requests** — [open an issue here](https://github.com/nx-panel/node/issues).
+  Panel issues belong in [`nx-panel/panel`](https://github.com/nx-panel/panel/issues).
 - **Security vulnerabilities** — report them privately through
-  [the organisation's security advisories](https://github.com/nexora-vpn/.github/security/advisories/new).
+  [the organisation's security advisories](https://github.com/nx-panel/.github/security/advisories/new).
   Please do not open a public issue for those.
 
 ## Licence
 
-Nexora Node is licensed per installation as part of Nexora. It needs no key of
+NX Node is licensed per installation as part of NX. It needs no key of
 its own — the Panel's licence caps how many nodes it will drive.
