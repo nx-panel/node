@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://avatars.githubusercontent.com/u/304456640?s=200&v=4" width="96" alt="NX">
+  <img src="https://avatars.githubusercontent.com/u/349063115?s=200&v=4" width="96" alt="NX">
   <h1>NX Node</h1>
   <p><strong>The data plane.</strong> Releases, container images and documentation.</p>
 </div>
